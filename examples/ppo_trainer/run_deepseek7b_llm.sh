@@ -1,8 +1,8 @@
 set -x
 
 python3 -m verl.trainer.main_ppo \
-    data.train_files=$HOME/data/gsm8k/train.parquet \
-    data.val_files=$HOME/data/gsm8k/test.parquet \
+    data.train_files=$HOME/verl/data/gsm8k/train.parquet \
+    data.val_files=$HOME/verl/data/gsm8k/test.parquet \
     data.train_batch_size=1024 \
     data.max_prompt_length=512 \
     data.max_response_length=512 \
@@ -24,7 +24,7 @@ python3 -m verl.trainer.main_ppo \
     actor_rollout_ref.ref.fsdp_config.param_offload=True \
     critic.optim.lr=1e-5 \
     critic.model.use_remove_padding=True \
-    critic.model.path=deepseek-ai/deepseek-llm-7b-chat \
+    critic.model.path=$HOME/verl/models/deepseek-math-7b-instruct \
     critic.model.enable_gradient_checkpointing=True \
     critic.ppo_micro_batch_size_per_gpu=32 \
     critic.model.fsdp_config.param_offload=False \
